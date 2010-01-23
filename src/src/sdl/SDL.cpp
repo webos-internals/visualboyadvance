@@ -2077,9 +2077,14 @@ void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination 
     apply_surface( x, y, source->w, source, destination );
 }
 
-int sortCompar( const struct dirent ** a, const struct dirent ** b )
+int sortComparD( const struct dirent ** a, const struct dirent ** b )
 {
     return strcasecmp( (*a)->d_name, (*b)->d_name );
+}
+
+int sortCompar( const void * a, const void * b )
+{
+    return sortComparD( (const struct dirent **)a, (const struct dirent **)b );
 }
 
 char * romSelector()
